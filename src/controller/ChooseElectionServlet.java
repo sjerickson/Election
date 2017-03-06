@@ -7,17 +7,20 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-/**
- * Servlet implementation class AddElectionServlet
- */
-@WebServlet("/AddElectionServlet")
-public class AddElectionServlet extends HttpServlet {
-	private static final long serialVersionUID = 1L;
+import model.ElectionDAO;
 
+/**
+ * Servlet implementation class ChooseElectionServlet
+ */
+@WebServlet("/ChooseElectionServlet")
+public class ChooseElectionServlet extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+       
     /**
-     * Default constructor. 
+     * @see HttpServlet#HttpServlet()
      */
-    public AddElectionServlet() {
+    public ChooseElectionServlet() {
+        super();
         // TODO Auto-generated constructor stub
     }
 
@@ -26,7 +29,12 @@ public class AddElectionServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		//response.getWriter().append("Served at: ").append(request.getContextPath());
+		
+		ElectionDAO dao = new ElectionDAO();
+		request.setAttribute("AllElections", dao.getAllElections());
+		getServletContext().getRequestDispatcher("/choose-election.jsp").forward(request, response);
+		System.out.println("--Leaving ChooseElectionServlet");
 	}
 
 	/**
@@ -34,8 +42,7 @@ public class AddElectionServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		//doGet(request, response);
-		
+		doGet(request, response);
 	}
 
 }

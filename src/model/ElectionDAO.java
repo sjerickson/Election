@@ -21,7 +21,7 @@ public class ElectionDAO {
 		String password = "DIAD2016";
 
 		try {
-			// Class.forName("com.mysql.jdbc.Driver");
+			Class.forName("com.mysql.jdbc.Driver");
 			con = DriverManager.getConnection(url, user, password);
 			System.out.println("Connection made");
 

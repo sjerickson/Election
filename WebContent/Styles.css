@@ -1,0 +1,36 @@
+@CHARSET "ISO-8859-1";
+body{
+	font-family:Arial, sans-serif;
+	color:	#253f3f;
+}
+table {
+	diplay:block;
+	margin:0 auto;
+	border-collapse: collapse;
+}
+th, td {
+	padding:10px;
+	border: 1px solid #ccc;
+}
+td{
+	font-size:18px;
+	text-align:center;
+}
+th{
+	color:white;
+	font-size:24px;
+	background-color:	#253f3f;
+}
+.center{
+	text-align:center;
+}
+.button{
+	display:inline-block;
+	text-align:center;
+	margin:10px auto;
+	padding:10px;
+	background-color:#df5520;
+	color:white;
+	font-size:16px;
+	border-radius: 2px;
+}

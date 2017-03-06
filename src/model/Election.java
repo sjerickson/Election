@@ -77,7 +77,7 @@ public class Election {
 		HashSet<String> abc = dao.getUniqueElections();
 		String[] electionsList = new String[abc.size()];
 		abc.toArray(electionsList);
-		elections = new JComboBox(electionsList);
+//		elections = new JComboBox(electionsList);
 	}
 
 	public void getCurrentCandidatesList() {
