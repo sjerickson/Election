@@ -8,19 +8,18 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import model.ElectionDAO;
-import model.ElectionList;
 
 /**
- * Servlet implementation class MasterControllerServlet
+ * Servlet implementation class SubmitVoteOrCancelServlet
  */
-@WebServlet("/MasterControllerServlet")
-public class MasterControllerServlet extends HttpServlet {
+@WebServlet("/SubmitVoteOrCancelServlet")
+public class SubmitVoteOrCancelServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public MasterControllerServlet() {
+    public SubmitVoteOrCancelServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -37,20 +36,17 @@ public class MasterControllerServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		System.out.println("Inside Master Controller Servlet");
 		String actionToPerform = request.getParameter("doThisToItem");
 		ElectionDAO dao = new ElectionDAO();
-		int tempID = Integer.parseInt(request.getParameter("id"));
-		System.out.println(tempID);
-		ElectionList selectedElection = dao.getAllElections().get(tempID);
-		System.out.println(selectedElection);
-		String tempElectionName = selectedElection.getElectionName();
-		System.out.println(tempElectionName);
-		request.setAttribute("electionName", tempElectionName);
-		if(actionToPerform.equals("Vote Now")){
-			getServletContext().getRequestDispatcher("/vote.jsp").forward(request, response);
-		}else if(actionToPerform.equals("Display Results")){
-			getServletContext().getRequestDispatcher("/display-results.jsp").forward(request, response);
+		if (actionToPerform.equals("Vote")){
+			String tempElectionName = (String)request.getParameter("election");
+			int candID = Integer.parseInt(request.getParameter("candidateID"));
+			dao.addTally(tempElectionName, candID);
+			request.setAttribute("sender", "newVote");
+			getServletContext().getRequestDispatcher("/thank-you.jsp").forward(request, response);
+		}else if (actionToPerform.equals("Cancel")){
+			request.setAttribute("AllElections", dao.getAllElections());
+			getServletContext().getRequestDispatcher("/choose-election.jsp").forward(request, response);
 		}
 	}
 

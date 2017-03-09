@@ -12,7 +12,7 @@
 	<%
 		ArrayList<ElectionList> allElections = (ArrayList<ElectionList>) request.getAttribute("AllElections");
 	%>
-	<form method="post" action="MasterControllerServlet">
+	<form method="post" action="VoteOrDisplayServlet">
 		<table border=1 cellpadding=5>
 			<tr>
 				<th>Select</th>
@@ -35,6 +35,8 @@
 			<input class="button" type="submit" name="doThisToItem"
 				value="Vote Now"> <input class="button" type="submit"
 				name="doThisToItem" value="Display Results">
+				<input class="button" type="submit"
+				name="doThisToItem" value="Add New Election">
 		</div>
 	</form>
 </body>
